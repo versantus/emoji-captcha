@@ -23,10 +23,30 @@ Watch as the emoji responds to different types of input:
 
 ## Quick Start
 
-1. Add the script to your HTML:
+1. Add the required script to your HTML:
 ```html
-<script src="https://emoji-human-app-jdrciuzl.devinapps.com/embed.js"></script>
+<script src="https://emoji-verification-demo.netlify.app/embed.js"></script>
 ```
+
+2. Add the verification element where you want it to appear:
+```html
+<div id="emoji-verification"></div>
+```
+
+3. Initialize the verification:
+```javascript
+const verification = new EmojiVerification({
+  element: '#emoji-verification',
+  onVerified: (isHuman) => {
+    // Handle verification result
+    if (isHuman) {
+      // Enable your form submission
+    }
+  }
+});
+```
+
+The verification will automatically style itself to match your website's theme. For more advanced customization options, please contact Versantus.
 
 2. Add the verification element:
 ```html

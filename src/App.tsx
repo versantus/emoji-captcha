@@ -131,55 +131,14 @@ function App() {
         <div>
           Made with ❤️ by <a href="https://www.versantus.co.uk/" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-700">Versantus</a>
         </div>
-        <Dialog>
-          <DialogTrigger asChild>
-            <button className="text-blue-500 hover:text-blue-700 underline">
-              Learn how to embed this form on your website
-            </button>
-          </DialogTrigger>
-          <DialogContent className="w-[95vw] sm:w-[90vw] max-w-3xl max-h-[90vh] sm:max-h-[80vh] overflow-y-auto p-3 sm:p-6">
-            <DialogHeader className="mb-2 sm:mb-4">
-              <DialogTitle className="text-lg sm:text-2xl">Embedding Instructions</DialogTitle>
-              <DialogDescription className="text-xs sm:text-base">
-                Follow these steps to add the emoji verification to your website:
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-medium mb-1 sm:mb-2 text-xs sm:text-base">1. Add the required script</h3>
-                <pre className="bg-gray-100 p-2 sm:p-4 rounded-md overflow-x-auto text-[10px] sm:text-sm">
-                  {`<script src="https://emoji-human-app-jdrciuzl.devinapps.com/embed.js"></script>`}
-                </pre>
-              </div>
-              <div>
-                <h3 className="font-medium mb-2 text-sm sm:text-base">2. Add the verification element</h3>
-                <pre className="bg-gray-100 p-2 sm:p-4 rounded-md overflow-x-auto text-xs sm:text-sm">
-                  {`<div id="emoji-verification"></div>`}
-                </pre>
-              </div>
-              <div>
-                <h3 className="font-medium mb-2 text-sm sm:text-base">3. Initialize the verification</h3>
-                <pre className="bg-gray-100 p-2 sm:p-4 rounded-md overflow-x-auto text-xs sm:text-sm">
-                  {`<script>
-  const verification = new EmojiVerification({
-    element: '#emoji-verification',
-    onVerified: (isHuman) => {
-      // Handle verification result
-      if (isHuman) {
-        // Enable your form submission
-      }
-    }
-  });
-</script>`}
-                </pre>
-              </div>
-              <div className="text-xs sm:text-sm text-gray-500 space-y-2">
-                <p>The verification will automatically style itself to match your website's theme.</p>
-                <p>For more advanced customization options, please contact Versantus.</p>
-              </div>
-            </div>
-          </DialogContent>
-        </Dialog>
+        <a 
+          href="https://github.com/versantus/emoji-captcha#quick-start" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="text-blue-500 hover:text-blue-700 underline"
+        >
+          Learn how to embed this form on your website
+        </a>
       </div>
     </div>
   )
