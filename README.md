@@ -1,6 +1,6 @@
-# Emoji Captcha
+# Emoji CAPTCHA
 
-A modern, user-friendly CAPTCHA system that verifies humanity through sentiment analysis. Instead of decoding distorted text or selecting images, users prove they're human by expressing positive sentiment.
+A modern, user-friendly CAPTCHA system that verifies humanity through sentiment analysis.Instead of decoding distorted text or selecting images, users prove they're human by expressing positive sentiment.
 
 ## Features
 
