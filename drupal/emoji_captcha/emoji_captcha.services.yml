@@ -1,0 +1,3 @@
+services:
+  emoji_captcha.sentiment_analyzer:
+    class: Drupal\emoji_captcha\Service\SentimentAnalyzer

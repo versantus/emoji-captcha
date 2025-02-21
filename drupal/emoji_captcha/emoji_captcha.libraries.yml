@@ -1,0 +1,6 @@
+emoji-captcha:
+  version: 1.x
+  js:
+    js/embed.js: {}
+  dependencies:
+    - core/drupalSettings

@@ -1,0 +1,7 @@
+name: Emoji Captcha
+type: module
+description: 'Provides emoji-based CAPTCHA using sentiment analysis.'
+package: Spam control
+core_version_requirement: ^10
+dependencies:
+  - captcha:captcha

@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the emoji_captcha module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function emoji_captcha_install() {
+  \Drupal::messenger()->addStatus(t('Emoji Captcha module has been installed.'));
+}
