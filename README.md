@@ -14,6 +14,13 @@ A modern, user-friendly CAPTCHA system that verifies humanity through sentiment 
 
 Try it out at: https://emoji-human-app-jdrciuzl.devinapps.com
 
+![Emoji Captcha Demo](public/demo.gif)
+
+Watch as the emoji responds to different types of input:
+- Neutral statements keep the emoji neutral 😐
+- Negative comments make the emoji angry 😠
+- Positive messages make the emoji smile 😊 and verify you're human!
+
 ## Quick Start
 
 1. Add the script to your HTML:
