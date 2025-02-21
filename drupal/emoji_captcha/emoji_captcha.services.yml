@@ -1,3 +1,6 @@
 services:
   emoji_captcha.sentiment_analyzer:
     class: Drupal\emoji_captcha\Service\SentimentAnalyzer
+  emoji_captcha.token_manager:
+    class: Drupal\emoji_captcha\Service\OneTimeTokenManager
+    arguments: ['@state']

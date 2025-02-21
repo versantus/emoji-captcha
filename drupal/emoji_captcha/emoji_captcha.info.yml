@@ -5,3 +5,4 @@ package: Spam control
 core_version_requirement: ^10
 dependencies:
   - captcha:captcha
+  - drupal:system

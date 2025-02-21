@@ -1,59 +1,77 @@
-(function (Drupal) {
+(function (Drupal, once) {
   'use strict';
+
+  // Simple sentiment analysis function
+  function analyzeSentiment(text) {
+    const positiveWords = ['love', 'happy', 'great', 'amazing', 'wonderful', 'excellent', 'good', 'best', 'beautiful', 'fantastic'];
+    const negativeWords = ['hate', 'bad', 'terrible', 'awful', 'horrible', 'worst', 'stupid', 'ugly', 'poor', 'disgusting'];
+    
+    let score = 0;
+    const words = text.toLowerCase().split(/\s+/);
+    
+    words.forEach(word => {
+      if (positiveWords.includes(word)) score += 1;
+      if (negativeWords.includes(word)) score -= 1;
+    });
+    
+    console.log('Analyzing sentiment for:', text, 'Score:', score);
+    return score;
+  }
 
   Drupal.behaviors.emojiCaptcha = {
     attach: function (context, settings) {
-      const containers = context.querySelectorAll('#emoji-verification');
-      containers.forEach(container => {
-        if (container.hasAttribute('data-processed')) {
+      console.log('Attaching emoji-captcha behavior');
+      once('emoji-captcha', 'fieldset.captcha-type-challenge--emoji', context).forEach(function (fieldset) {
+        console.log('Processing CAPTCHA fieldset:', fieldset);
+        
+        // Find the emoji text node
+        const emojiNode = fieldset.querySelector('.emoji-captcha-display');
+        if (!emojiNode) {
+          console.log('No emoji node found in:', fieldset);
           return;
         }
+        
+        // Get the one-time token
+        const token = settings.emojiCaptcha?.token;
+        if (!token) {
+          console.log('No token found in settings');
+          return;
+        }
+        
+        console.log('Found emoji node:', emojiNode.textContent);
 
-        // Create emoji display element
-        const emojiDisplay = document.createElement('div');
-        emojiDisplay.style.fontSize = '2em';
-        emojiDisplay.textContent = '😐';
-        container.appendChild(emojiDisplay);
+        // Find the input field
+        const input = fieldset.querySelector('#edit-captcha-response');
+        if (!input) {
+          console.log('No input field found');
+          return;
+        }
+        console.log('Found input field:', input);
 
-        // Create input element
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.placeholder = 'Type something nice to make the emoji smile...';
-        input.className = 'form-text';
-        container.appendChild(input);
+        console.log('Found all elements:', { fieldset, emojiNode, input });
 
-        // Hidden input for form submission
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'hidden';
-        hiddenInput.name = 'captcha_response';
-        container.appendChild(hiddenInput);
-
-        // Initialize sentiment analysis
-        const sentiment = require('sentiment');
-        const analyzer = new sentiment();
-
+        // Add event listener to input field
         input.addEventListener('input', function(e) {
           const text = e.target.value;
+          console.log('Input text:', text);
+          
           if (!text.trim()) {
-            emojiDisplay.textContent = '😐';
-            hiddenInput.value = '0';
+            emojiNode.textContent = '😐';
             return;
           }
 
-          const result = analyzer.analyze(text);
-          hiddenInput.value = result.score.toString();
-
-          if (result.score > 2) {
-            emojiDisplay.textContent = '😊';
-          } else if (result.score < 0) {
-            emojiDisplay.textContent = '😠';
+          const score = analyzeSentiment(text);
+          console.log('Sentiment score:', score);
+          
+          if (score > 2) {
+            emojiNode.textContent = '😊';
+          } else if (score < 0) {
+            emojiNode.textContent = '😠';
           } else {
-            emojiDisplay.textContent = '😐';
+            emojiNode.textContent = '😐';
           }
         });
-
-        container.setAttribute('data-processed', 'true');
       });
     }
   };
-})(Drupal);
+})(Drupal, once);

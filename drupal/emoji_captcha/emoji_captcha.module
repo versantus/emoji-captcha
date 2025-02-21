@@ -1,0 +1,46 @@
+<?php
+
+/**
+ * @file
+ * Contains emoji_captcha.module.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_captcha().
+ */
+function emoji_captcha_captcha($op, $captcha_type = '') {
+  switch ($op) {
+    case 'list':
+      return ['Emoji'];
+
+    case 'generate':
+      if ($captcha_type == 'Emoji') {
+        $result = [];
+        $result['solution'] = '3'; // Default passing score
+        $result['form'] = [
+          '#type' => 'container',
+          '#attributes' => [
+            'id' => 'emoji-verification',
+          ],
+          'emoji' => [
+            '#markup' => '<span class="emoji-captcha-display" style="font-size: 2em; margin: 10px 0; display: inline-block;">😐</span>',
+            '#allowed_tags' => ['span'],
+          ],
+          'captcha_response' => [
+            '#type' => 'textfield',
+            '#title' => t('Type something nice'),
+            '#description' => t('Type something nice to make the emoji smile.'),
+            '#required' => TRUE,
+            '#attributes' => [
+              'autocomplete' => 'off',
+            ],
+          ],
+        ];
+        $result['form']['#attached']['library'][] = 'emoji_captcha/emoji-captcha';
+        return $result;
+      }
+      break;
+  }
+}

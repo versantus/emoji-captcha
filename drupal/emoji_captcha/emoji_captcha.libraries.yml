@@ -3,4 +3,6 @@ emoji-captcha:
   js:
     js/embed.js: {}
   dependencies:
+    - core/drupal
+    - core/once
     - core/drupalSettings
