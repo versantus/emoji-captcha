@@ -48,23 +48,6 @@ const verification = new EmojiVerification({
 
 The verification will automatically style itself to match your website's theme. For more advanced customization options, please contact Versantus.
 
-2. Add the verification element:
-```html
-<div id="emoji-verification"></div>
-```
-
-3. Initialize the verification:
-```javascript
-const verification = new EmojiVerification({
-  element: '#emoji-verification',
-  onVerified: (isHuman) => {
-    if (isHuman) {
-      // Enable your form submission
-    }
-  }
-});
-```
-
 ## How It Works
 
 1. The system presents users with an emoji face and a text input
