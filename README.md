@@ -12,7 +12,7 @@ A modern, user-friendly CAPTCHA system that verifies humanity through sentiment 
 
 ## Demo
 
-Try it out at: https://emoji-human-app-jdrciuzl.devinapps.com
+Try it out at: https://emoji-human-app-oidkg8bv.devinapps.com
 
 ![Emoji Captcha Demo](public/demo.gif)
 
